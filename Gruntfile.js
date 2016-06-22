@@ -27,6 +27,12 @@ module.exports = grunt => {
             css: {
                 src: 'node_modules/bootstrap/**',
                 dest: 'build/'
+            },
+            html: {
+                expand: true,
+                cwd: 'src/',
+                src: 'template/**/*.html',
+                dest: 'build/'
             } 
         },
         concat: {
@@ -37,6 +43,7 @@ module.exports = grunt => {
               src: [
                   'src/js/app.js',
                   'src/js/factory/**/*.js',
+                  'src/js/directive/**/*.js',
                   'src/js/controller/**/*.js'
               ],
               dest: 'temp/built.js',

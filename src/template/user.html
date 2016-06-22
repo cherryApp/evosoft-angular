@@ -1,0 +1,16 @@
+<form role="form" novalidate>
+    <div 
+         data-form-group data-label="{{field.label}}" 
+         data-model="user[field.name]" 
+         data-input-name="field.name" 
+         data-error="userError[field.name]" 
+         data-ng-repeat="field in userFields">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" data-ng-click="updateUser(user)">update</button>
+    </div>
+    <div data-ng-hide="isDebug || 1==1">
+        <pre>{{ user | json }}</pre>
+    </div>
+
+</form>

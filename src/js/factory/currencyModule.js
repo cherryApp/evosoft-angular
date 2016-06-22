@@ -1,14 +1,9 @@
-'use strict';
-
-var evosoft = angular.module('evosoft', ['currencyModule']);;evosoft.service('bodyService', function () {
-    return {
-        currentPage: ''
-    };
-});;angular.module('currencyModule', []).factory('currencyFactory', function () {
-
+angular.module( 'currencyModule', [] )
+    .factory( 'currencyFactory', function() {
+    
     // Currency codes.
     return {
-        "currencies": {
+        "currencies" : {
             "USD": {
                 "symbol": "$",
                 "name": "US Dollar",
@@ -1072,143 +1067,30 @@ var evosoft = angular.module('evosoft', ['currencyModule']);;evosoft.service('bo
                 "name_plural": "Zambian kwachas"
             }
         },
-        "presymbols": ['EUR', 'USD'],
-        "locales": { "BD": "BDT", "BE": "EUR", "BF": "XOF", "BG": "BGN", "BA": "BAM", "BB": "BBD", "WF": "XPF", "BL": "EUR", "BM": "BMD", "BN": "BND", "BO": "BOB", "BH": "BHD", "BI": "BIF", "BJ": "XOF", "BT": "BTN", "JM": "JMD", "BV": "NOK", "BW": "BWP", "WS": "WST", "BQ": "USD", "BR": "BRL", "BS": "BSD", "JE": "GBP", "BY": "BYR", "BZ": "BZD", "RU": "RUB", "RW": "RWF", "RS": "RSD", "TL": "USD", "RE": "EUR", "TM": "TMT", "TJ": "TJS", "RO": "RON", "TK": "NZD", "GW": "XOF", "GU": "USD", "GT": "GTQ", "GS": "GBP", "GR": "EUR", "GQ": "XAF", "GP": "EUR", "JP": "JPY", "GY": "GYD", "GG": "GBP", "GF": "EUR", "GE": "GEL", "GD": "XCD", "GB": "GBP", "GA": "XAF", "SV": "USD", "GN": "GNF", "GM": "GMD", "GL": "DKK", "GI": "GIP", "GH": "GHS", "OM": "OMR", "TN": "TND", "JO": "JOD", "HR": "HRK", "HT": "HTG", "HU": "HUF", "HK": "HKD", "HN": "HNL", "HM": "AUD", "VE": "VEF", "PR": "USD", "PS": "ILS", "PW": "USD", "PT": "EUR", "SJ": "NOK", "PY": "PYG", "IQ": "IQD", "PA": "PAB", "PF": "XPF", "PG": "PGK", "PE": "PEN", "PK": "PKR", "PH": "PHP", "PN": "NZD", "PL": "PLN", "PM": "EUR", "ZM": "ZMK", "EH": "MAD", "EE": "EUR", "EG": "EGP", "ZA": "ZAR", "EC": "USD", "IT": "EUR", "VN": "VND", "SB": "SBD", "ET": "ETB", "SO": "SOS", "ZW": "ZWL", "SA": "SAR", "ES": "EUR", "ER": "ERN", "ME": "EUR", "MD": "MDL", "MG": "MGA", "MF": "EUR", "MA": "MAD", "MC": "EUR", "UZ": "UZS", "MM": "MMK", "ML": "XOF", "MO": "MOP", "MN": "MNT", "MH": "USD", "MK": "MKD", "MU": "MUR", "MT": "EUR", "MW": "MWK", "MV": "MVR", "MQ": "EUR", "MP": "USD", "MS": "XCD", "MR": "MRO", "IM": "GBP", "UG": "UGX", "TZ": "TZS", "MY": "MYR", "MX": "MXN", "IL": "ILS", "FR": "EUR", "IO": "USD", "SH": "SHP", "FI": "EUR", "FJ": "FJD", "FK": "FKP", "FM": "USD", "FO": "DKK", "NI": "NIO", "NL": "EUR", "NO": "NOK", "NA": "NAD", "VU": "VUV", "NC": "XPF", "NE": "XOF", "NF": "AUD", "NG": "NGN", "NZ": "NZD", "NP": "NPR", "NR": "AUD", "NU": "NZD", "CK": "NZD", "XK": "EUR", "CI": "XOF", "CH": "CHF", "CO": "COP", "CN": "CNY", "CM": "XAF", "CL": "CLP", "CC": "AUD", "CA": "CAD", "CG": "XAF", "CF": "XAF", "CD": "CDF", "CZ": "CZK", "CY": "EUR", "CX": "AUD", "CR": "CRC", "CW": "ANG", "CV": "CVE", "CU": "CUP", "SZ": "SZL", "SY": "SYP", "SX": "ANG", "KG": "KGS", "KE": "KES", "SS": "SSP", "SR": "SRD", "KI": "AUD", "KH": "KHR", "KN": "XCD", "KM": "KMF", "ST": "STD", "SK": "EUR", "KR": "KRW", "SI": "EUR", "KP": "KPW", "KW": "KWD", "SN": "XOF", "SM": "EUR", "SL": "SLL", "SC": "SCR", "KZ": "KZT", "KY": "KYD", "SG": "SGD", "SE": "SEK", "SD": "SDG", "DO": "DOP", "DM": "XCD", "DJ": "DJF", "DK": "DKK", "VG": "USD", "DE": "EUR", "YE": "YER", "DZ": "DZD", "US": "USD", "UY": "UYU", "YT": "EUR", "UM": "USD", "LB": "LBP", "LC": "XCD", "LA": "LAK", "TV": "AUD", "TW": "TWD", "TT": "TTD", "TR": "TRY", "LK": "LKR", "LI": "CHF", "LV": "EUR", "TO": "TOP", "LT": "LTL", "LU": "EUR", "LR": "LRD", "LS": "LSL", "TH": "THB", "TF": "EUR", "TG": "XOF", "TD": "XAF", "TC": "USD", "LY": "LYD", "VA": "EUR", "VC": "XCD", "AE": "AED", "AD": "EUR", "AG": "XCD", "AF": "AFN", "AI": "XCD", "VI": "USD", "IS": "ISK", "IR": "IRR", "AM": "AMD", "AL": "ALL", "AO": "AOA", "AQ": "", "AS": "USD", "AR": "ARS", "AU": "AUD", "AT": "EUR", "AW": "AWG", "IN": "INR", "AX": "EUR", "AZ": "AZN", "IE": "EUR", "ID": "IDR", "UA": "UAH", "QA": "QAR", "MZ": "MZN" },
-        "separator": function separator(num, symbol) {
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, symbol);
+        "presymbols" : ['EUR', 'USD'],
+        "locales" : {"BD": "BDT", "BE": "EUR", "BF": "XOF", "BG": "BGN", "BA": "BAM", "BB": "BBD", "WF": "XPF", "BL": "EUR", "BM": "BMD", "BN":        "BND", "BO": "BOB", "BH": "BHD", "BI": "BIF", "BJ": "XOF", "BT": "BTN", "JM": "JMD", "BV": "NOK", "BW": "BWP", "WS": "WST", "BQ": "USD", "BR": "BRL", "BS": "BSD", "JE": "GBP", "BY": "BYR", "BZ": "BZD", "RU": "RUB", "RW": "RWF", "RS": "RSD", "TL": "USD", "RE": "EUR", "TM": "TMT", "TJ": "TJS", "RO": "RON", "TK": "NZD", "GW": "XOF", "GU": "USD", "GT": "GTQ", "GS": "GBP", "GR": "EUR", "GQ": "XAF", "GP": "EUR", "JP": "JPY", "GY": "GYD", "GG": "GBP", "GF": "EUR", "GE": "GEL", "GD": "XCD", "GB": "GBP", "GA": "XAF", "SV": "USD", "GN": "GNF", "GM": "GMD", "GL": "DKK", "GI": "GIP", "GH": "GHS", "OM": "OMR", "TN": "TND", "JO": "JOD", "HR": "HRK", "HT": "HTG", "HU": "HUF", "HK": "HKD", "HN": "HNL", "HM": "AUD", "VE": "VEF", "PR": "USD", "PS": "ILS", "PW": "USD", "PT": "EUR", "SJ": "NOK", "PY": "PYG", "IQ": "IQD", "PA": "PAB", "PF": "XPF", "PG": "PGK", "PE": "PEN", "PK": "PKR", "PH": "PHP", "PN": "NZD", "PL": "PLN", "PM": "EUR", "ZM": "ZMK", "EH": "MAD", "EE": "EUR", "EG": "EGP", "ZA": "ZAR", "EC": "USD", "IT": "EUR", "VN": "VND", "SB": "SBD", "ET": "ETB", "SO": "SOS", "ZW": "ZWL", "SA": "SAR", "ES": "EUR", "ER": "ERN", "ME": "EUR", "MD": "MDL", "MG": "MGA", "MF": "EUR", "MA": "MAD", "MC": "EUR", "UZ": "UZS", "MM": "MMK", "ML": "XOF", "MO": "MOP", "MN": "MNT", "MH": "USD", "MK": "MKD", "MU": "MUR", "MT": "EUR", "MW": "MWK", "MV": "MVR", "MQ": "EUR", "MP": "USD", "MS": "XCD", "MR": "MRO", "IM": "GBP", "UG": "UGX", "TZ": "TZS", "MY": "MYR", "MX": "MXN", "IL": "ILS", "FR": "EUR", "IO": "USD", "SH": "SHP", "FI": "EUR", "FJ": "FJD", "FK": "FKP", "FM": "USD", "FO": "DKK", "NI": "NIO", "NL": "EUR", "NO": "NOK", "NA": "NAD", "VU": "VUV", "NC": "XPF", "NE": "XOF", "NF": "AUD", "NG": "NGN", "NZ": "NZD", "NP": "NPR", "NR": "AUD", "NU": "NZD", "CK": "NZD", "XK": "EUR", "CI": "XOF", "CH": "CHF", "CO": "COP", "CN": "CNY", "CM": "XAF", "CL": "CLP", "CC": "AUD", "CA": "CAD", "CG": "XAF", "CF": "XAF", "CD": "CDF", "CZ": "CZK", "CY": "EUR", "CX": "AUD", "CR": "CRC", "CW": "ANG", "CV": "CVE", "CU": "CUP", "SZ": "SZL", "SY": "SYP", "SX": "ANG", "KG": "KGS", "KE": "KES", "SS": "SSP", "SR": "SRD", "KI": "AUD", "KH": "KHR", "KN": "XCD", "KM": "KMF", "ST": "STD", "SK": "EUR", "KR": "KRW", "SI": "EUR", "KP": "KPW", "KW": "KWD", "SN": "XOF", "SM": "EUR", "SL": "SLL", "SC": "SCR", "KZ": "KZT", "KY": "KYD", "SG": "SGD", "SE": "SEK", "SD": "SDG", "DO": "DOP", "DM": "XCD", "DJ": "DJF", "DK": "DKK", "VG": "USD", "DE": "EUR", "YE": "YER", "DZ": "DZD", "US": "USD", "UY": "UYU", "YT": "EUR", "UM": "USD", "LB": "LBP", "LC": "XCD", "LA": "LAK", "TV": "AUD", "TW": "TWD", "TT": "TTD", "TR": "TRY", "LK": "LKR", "LI": "CHF", "LV": "EUR", "TO": "TOP", "LT": "LTL", "LU": "EUR", "LR": "LRD", "LS": "LSL", "TH": "THB", "TF": "EUR", "TG": "XOF", "TD": "XAF", "TC": "USD", "LY": "LYD", "VA": "EUR", "VC": "XCD", "AE": "AED", "AD": "EUR", "AG": "XCD", "AF": "AFN", "AI": "XCD", "VI": "USD", "IS": "ISK", "IR": "IRR", "AM": "AMD", "AL": "ALL", "AO": "AOA", "AQ": "", "AS": "USD", "AR": "ARS", "AU": "AUD", "AT": "EUR", "AW": "AWG", "IN": "INR", "AX": "EUR", "AZ": "AZN", "IE": "EUR", "ID": "IDR", "UA": "UAH", "QA": "QAR", "MZ": "MZN"},
+        "separator" : function( num, symbol ) {
+            return num.toString().replace( /\B(?=(\d{3})+(?!\d))/g, symbol );
         }
     };
-}).filter('currencyFilter', ['currencyFactory', function (currencyFactory) {
-    return function (input, code, separator) {
+    
+} )
+.filter( 'currencyFilter', ['currencyFactory', function( currencyFactory ) {
+    return function( input, code, separator ) {
         var lang = navigator.language.toUpperCase();
         var code = code || currencyFactory.locales[lang];
         code = code || 'USD';
-        var presymbols = currencyFactory.presymbols.indexOf(code) !== -1;
-
+        var presymbols = currencyFactory.presymbols.indexOf( code ) !== -1;
+        
         separator = angular.isDefined(separator) ? separator : ' ';
-
-        var out = currencyFactory.separator(input, separator);
-        if (presymbols) {
+        
+        var out = currencyFactory.separator( input, separator );
+        if ( presymbols ) {
             out = currencyFactory.currencies[code].symbol + ' ' + out;
         } else {
             out = out + ' ' + currencyFactory.currencies[code].symbol;
         }
-
+            
         return out;
     };
-}]);;evosoft.factory('userFactory', ['$http', '$q', function ($http, $q) {
-    return {
-        getUser: function getUser() {
-            var deferred = $q.defer();
-            $http.get('/user').then(function (userData) {
-                deferred.resolve(userData.data);
-            }, function (err) {
-                deferred.reject(err);
-            });
-            return deferred.promise;
-        },
-        updateUser: function updateUser(user) {
-            var deferred = $q.defer();
-            $http.post('/user', user).then(function (userData) {
-                deferred.resolve(userData.data);
-            }, function (err) {
-                deferred.reject(err);
-            });
-            return deferred.promise;
-        }
-    };
-}]);; // <form-group></form-group>
-evosoft.directive('formGroup', [function () {
-    return {
-        restrict: 'AE',
-        template: '\n        <div class="form-group">\n            <label data-ng-bind="label"></label>\n            <input type="text" name="{{inputName}}" data-ng-model="model" class="form-control">\n            <div data-ng-show="error" class="input-error">{{error}}</div>\n        </div>',
-        scope: {
-            label: '@label',
-            model: '=model',
-            inputName: '=inputName',
-            error: '=error'
-        }
-    };
-}]);;evosoft.controller('bodyController', ['$scope', 'userFactory', '$rootScope', 'bodyService', function ($scope, userFactory, $rootScope, bodyService) {
-
-    $scope.currentPage = 'template/dashboard.html';
-    $scope.isDebug = false;
-
-    $scope.userError = {};
-
-    // User inputs.
-    $scope.userFields = [{ name: 'email', label: 'Email' }, { name: 'name', label: 'Name' }, { name: 'age', label: 'Age' }, { name: 'salary', label: 'Salary' }];
-
-    $scope.$watch(function () {
-        return bodyService.currentPage;
-    }, function (newValue) {
-        if (newValue !== '') {
-            $scope.currentPage = newValue;
-        }
-    });
-
-    $scope.$watchCollection('user', function (newVal, oldVal) {
-        console.log(newVal, oldVal);
-    });
-
-    userFactory.getUser().then(function (user) {
-        $scope.user = user;
-    });
-
-    $scope.updateUser = function (user) {
-        if (!$scope.validate(user)) return;
-
-        userFactory.updateUser(user).then(function (response) {
-            console.log('User updated: ', response);
-        });
-    };
-
-    // Validate user data.
-    $scope.validate = function (user) {
-        $scope.userError = {};
-
-        // Undefined or empty.
-        for (var k in user) {
-            if (angular.isUndefined(user[k])) {
-                $scope.userError[k] = k + ' is not defined';
-            } else if (user[k].toString() === '') {
-                $scope.userError[k] = k + ' is empty';
-            }
-        }
-
-        return Object.keys($scope.userError).length === 0;
-    };
-}]);; // Control header.
-evosoft.controller('headerController', ['$scope', '$timeout', '$rootScope', 'bodyService', function ($scope, $timeout, $rootScope, bodyService) {
-    $scope.projectName = 'Evosoft project';
-    $timeout(function () {
-        $scope.projectName = 'Siemens admin';
-    }, 5000);
-
-    // Current page.
-    $scope.currentPage = 'dashboard';
-
-    // Menu points of header.
-    $scope.menuPoints = [{
-        href: '#',
-        text: 'Dashboard',
-        template: 'dashboard'
-    }, {
-        href: '#user',
-        text: 'User',
-        template: 'user'
-    }, {
-        href: '#admin',
-        text: 'Admin',
-        template: 'admin'
-    }];
-
-    // Page change.
-    $scope.changePage = function ($event, point) {
-        // $event.preventDefault();
-        $scope.currentPage = 'template/' + point.template + '.html';
-        // $rootScope.$broadcast('changePage', $scope.currentPage);
-        bodyService.currentPage = $scope.currentPage;
-    };
-}]);
-//# sourceMappingURL=babel.js.map
+} ] );
