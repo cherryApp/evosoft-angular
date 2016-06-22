@@ -1,6 +1,22 @@
 'use strict';
 
-var evosoft = angular.module('evosoft', ['currencyModule']);;evosoft.service('bodyService', function () {
+var evosoft = angular.module('evosoft', ['currencyModule', 'ui.router']);
+/*
+evosoft.config([
+    '$stateProvider',
+    function($stateProvider){
+        
+        // Default state.
+        // $urlRouterProvider.otherwise("/");
+        
+        $stateProvider
+            .state('dashboard', {
+                url: "/",
+                templateUrl: 'template/dashboard.html',
+                controller: 'bodyController'
+            });
+}]);
+*/;evosoft.service('bodyService', function () {
     return {
         currentPage: ''
     };
@@ -1096,7 +1112,23 @@ var evosoft = angular.module('evosoft', ['currencyModule']);;evosoft.service('bo
 
         return out;
     };
-}]);;evosoft.factory('userFactory', ['$http', '$q', function ($http, $q) {
+}]);;evosoft.service('staffService', function () {
+    return {
+        city: [{ value: 1, country: 1, name: 'München' }, { value: 2, country: 1, name: 'Stuttgart' }, { value: 3, country: 1, name: 'Berlin' }, { value: 4, country: 2, name: 'Budapest' }, { value: 5, country: 2, name: 'Szeged' }, { value: 6, country: 2, name: 'Miskolc' }],
+        country: [{ value: 1, name: 'Germany' }, { value: 2, name: 'Hungary' }],
+        currentCountry: 0,
+        getCity: function getCity() {
+            var currentCity = [];
+            for (var k in this.city) {
+                console.log(this.city[k].country, this.currentCountry);
+                if (parseInt(this.city[k].country) === parseInt(this.currentCountry)) {
+                    currentCity.push(this.city[k]);
+                }
+            }
+            return currentCity;
+        }
+    };
+});;evosoft.factory('userFactory', ['$http', '$q', function ($http, $q) {
     return {
         getUser: function getUser() {
             var deferred = $q.defer();
@@ -1117,17 +1149,56 @@ var evosoft = angular.module('evosoft', ['currencyModule']);;evosoft.service('bo
             return deferred.promise;
         }
     };
+}]);; // <custom-select></custom-select>
+evosoft.directive('customSelect', [function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'template/directive/custom-select.html',
+        transclude: false,
+        scope: {
+            label: '@label',
+            model: '=model',
+            inputName: '=inputName',
+            error: '=error',
+            source: '@source'
+        },
+        controller: ['$scope', '$http', 'staffService', function ($scope, $http, staffService) {
+            if ($scope.source === 'country') {
+                $scope.$watch('model', function () {
+                    console.log('model', $scope.model);
+                    staffService.currentCountry = $scope.model;
+                });
+            } else {
+                $scope.$watch(function () {
+                    return staffService.currentCountry;
+                }, function (newValue) {
+                    console.log('newValue', newValue);
+                    $scope.options = staffService.getCity();
+                });
+            }
+
+            $scope.options = staffService[$scope.source];
+        }]
+    };
 }]);; // <form-group></form-group>
 evosoft.directive('formGroup', [function () {
     return {
         restrict: 'AE',
-        template: '\n        <div class="form-group">\n            <label data-ng-bind="label"></label>\n            <input type="text" name="{{inputName}}" data-ng-model="model" class="form-control">\n            <div data-ng-show="error" class="input-error">{{error}}</div>\n        </div>',
+        templateUrl: 'template/directive/form-group.html',
         scope: {
             label: '@label',
             model: '=model',
             inputName: '=inputName',
             error: '=error'
-        }
+        },
+        link: function link(scope, el, attr) {
+            if (angular.isUndefined(scope.model)) {
+                console.error('Error in form-group dircective: Model not exists');
+            }
+        },
+        controller: ['$scope', '$http', function () {
+            // console.log(arguments);
+        }]
     };
 }]);;evosoft.controller('bodyController', ['$scope', 'userFactory', '$rootScope', 'bodyService', function ($scope, userFactory, $rootScope, bodyService) {
 
@@ -1135,6 +1206,8 @@ evosoft.directive('formGroup', [function () {
     $scope.isDebug = false;
 
     $scope.userError = {};
+
+    $scope.values = [{ text: 'Hello', value: "world" }];
 
     // User inputs.
     $scope.userFields = [{ name: 'email', label: 'Email' }, { name: 'name', label: 'Name' }, { name: 'age', label: 'Age' }, { name: 'salary', label: 'Salary' }];

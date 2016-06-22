@@ -10,6 +10,10 @@ evosoft.controller('bodyController', [
         
         $scope.userError = {};
         
+        $scope.values = [
+            {text: 'Hello', value: "world"}
+        ];
+        
         // User inputs.
         $scope.userFields = [
             {name: 'email', label: 'Email'},

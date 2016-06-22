@@ -6,6 +6,16 @@
          data-error="userError[field.name]" 
          data-ng-repeat="field in userFields">
     </div>
+    <div data-custom-select
+         data-model="user.country" 
+         data-input-name="country" 
+         data-error="userError.country" 
+         data-source="country"></div>
+    <div data-custom-select
+         data-model="user.city" 
+         data-input-name="city" 
+         data-error="userError.city" 
+         data-source="city"></div>
     <div class="form-group">
         <button type="button" class="btn btn-primary" data-ng-click="updateUser(user)">update</button>
     </div>

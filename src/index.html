@@ -7,8 +7,8 @@
     <meta name="author" content="">
     <title>Starter Template for Bootstrap 3.3.6</title>
     <link rel="shortcut icon" href="">
-    <link rel="stylesheet" href="bootstrap/node_modules/bootstrap/dist/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="bootstrap/node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
     <style>
         body{padding-top:65px;}
     </style>
@@ -17,11 +17,9 @@
 <body data-ng-app="evosoft">
     <div data-ng-include="'template/header.html'"></div>
 
-    <div 
-         class="container" 
-         data-ng-controller="bodyController" 
-         data-ng-include="currentPage"></div>
+    <div data-ui-view></div>
 
+    <script src="js/lib.min.js"></script>
     <script src="js/evosoft-angular.min.js"></script> 
 </body>
-</html>
+</html> 

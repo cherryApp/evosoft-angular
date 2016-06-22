@@ -2,17 +2,20 @@
 evosoft.directive('formGroup', [function(){
     return {
         restrict: 'AE',
-        template: `
-        <div class="form-group">
-            <label data-ng-bind="label"></label>
-            <input type="text" name="{{inputName}}" data-ng-model="model" class="form-control">
-            <div data-ng-show="error" class="input-error">{{error}}</div>
-        </div>`,
+        templateUrl: 'template/directive/form-group.html',
         scope: {
             label: '@label',
             model: '=model',
             inputName: '=inputName',
             error: '=error'
-        }
+        },
+        link: function(scope, el, attr) {
+            if(angular.isUndefined(scope.model)) {
+                console.error('Error in form-group dircective: Model not exists');
+            }
+        },
+        controller: ['$scope', '$http', function() {
+            // console.log(arguments);
+        }]
     };
 }]);

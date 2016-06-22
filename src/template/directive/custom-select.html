@@ -1,0 +1,10 @@
+<div class="form-group">
+    <label data-ng-bind="label"></label>
+    <select name="{{inputName}}" data-ng-model="model" class="form-control">
+        <option value="notset" selected>select a value</option>
+        <option data-ng-repeat="option in options" value="{{option.value}}">
+            {{ option.name }}
+        </option> 
+    </select>
+    <div data-ng-show="error" class="input-error">{{error}}</div>
+</div>

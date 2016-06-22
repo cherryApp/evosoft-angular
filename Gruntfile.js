@@ -11,10 +11,7 @@ module.exports = grunt => {
           },
           build: {
             src: [
-                'node_modules/jquery/dist/jquery.min.js',
-                'node_modules/angular/angular.min.js',
-                'node_modules/bootstrap/dist/js/bootstrap.min.js',
-                'temp/babel.js'
+                'temp/<%= pkg.name %>.min.js'
             ],
             dest: 'build/js/<%= pkg.name %>.min.js'
           }
@@ -33,11 +30,29 @@ module.exports = grunt => {
                 cwd: 'src/',
                 src: 'template/**/*.html',
                 dest: 'build/'
-            } 
+            },
+            mainjs: {
+                expand: true,
+                cwd: 'temp/',
+                src: '<%= pkg.name %>.min.js',
+                dest: 'build/js/'
+            }
         },
         concat: {
             options: {
-              separator: ';',
+              separator: "\n;\n",
+              process: function(src, filePath) {
+                  return src.replace(/\/\/\#.*\.map/g, '');
+              }
+            },
+            lib: {
+                src: [
+                    'node_modules/jquery/dist/jquery.min.js',
+                    'node_modules/angular/angular.min.js',
+                    'node_modules/angular-ui-router/release/angular-ui-router.min.js',
+                    'node_modules/bootstrap/dist/js/bootstrap.min.js'
+                ],
+                dest: 'build/js/lib.min.js'
             },
             dist: {
               src: [
@@ -49,14 +64,14 @@ module.exports = grunt => {
               dest: 'temp/built.js',
             }
           },
-        "babel": {
+        babel: {
             options: {
-              sourceMap: true,
+              sourceMap: false,
               presets: ['babel-preset-es2015']
             },
             dist: {
               files: {
-                'temp/babel.js': 'temp/built.js'
+                'temp/<%= pkg.name %>.min.js': 'temp/built.js'
               }
             }
         },
@@ -85,7 +100,8 @@ module.exports = grunt => {
 //  grunt.loadNpmTasks('babel');
 
   // Default task(s).
-  grunt.registerTask('dev', ['concat', 'babel', 'uglify', 'copy']);
+  grunt.registerTask('dev', ['concat', 'babel', 'copy']);
+  grunt.registerTask('prod', ['concat', 'babel', 'copy', 'uglify']);
   grunt.registerTask('default', ['watch']);
  
 	
