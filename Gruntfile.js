@@ -6,17 +6,52 @@ module.exports = grunt => {
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
           options: {
-            banner: '/*! <%= pkg.name %> */\n'
+            banner: '/*! <%= pkg.name %> */\n',
+            sourceMap: true
           },
           build: {
             src: [
                 'node_modules/jquery/dist/jquery.min.js',
                 'node_modules/angular/angular.min.js',
                 'node_modules/bootstrap/dist/js/bootstrap.min.js',
-                'src/js/app.js'
+                'temp/babel.js'
             ],
             dest: 'build/js/<%= pkg.name %>.min.js'
           }
+        },
+        copy: {
+            files: {
+                src: 'src/index.html',
+                dest: 'build/index.html'
+            },
+            css: {
+                src: 'node_modules/bootstrap/**',
+                dest: 'build/'
+            } 
+        },
+        concat: {
+            options: {
+              separator: ';',
+            },
+            dist: {
+              src: [
+                  'src/js/app.js',
+                  'src/js/factory/**/*.js',
+                  'src/js/controller/**/*.js'
+              ],
+              dest: 'temp/built.js',
+            }
+          },
+        "babel": {
+            options: {
+              sourceMap: true,
+              presets: ['babel-preset-es2015']
+            },
+            dist: {
+              files: {
+                'temp/babel.js': 'temp/built.js'
+              }
+            }
         },
         watch: {
           scripts: {
@@ -25,7 +60,7 @@ module.exports = grunt => {
                 'src/css/**/*.css',
                 'src/**/*.html'
             ],
-            tasks: ['dev'],
+            tasks: ['dev'], 
             options: {
                 spawn: false,
                 event: ['changed', 'added', 'deleted']
@@ -43,7 +78,7 @@ module.exports = grunt => {
 //  grunt.loadNpmTasks('babel');
 
   // Default task(s).
-  grunt.registerTask('dev', ['uglify']);
+  grunt.registerTask('dev', ['concat', 'babel', 'uglify', 'copy']);
   grunt.registerTask('default', ['watch']);
  
 	
