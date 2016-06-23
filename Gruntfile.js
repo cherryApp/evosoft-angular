@@ -50,6 +50,7 @@ module.exports = grunt => {
                     'node_modules/jquery/dist/jquery.min.js',
                     'node_modules/angular/angular.min.js',
                     'node_modules/angular-ui-router/release/angular-ui-router.min.js',
+                    'node_modules/angular-currency-filter/currencyModule.js',
                     'node_modules/bootstrap/dist/js/bootstrap.min.js'
                 ],
                 dest: 'build/js/lib.min.js'

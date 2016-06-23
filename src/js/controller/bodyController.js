@@ -3,7 +3,8 @@ evosoft.controller('bodyController', [
     'userFactory',
     '$rootScope',
     'bodyService',
-    function($scope, userFactory, $rootScope, bodyService) {
+    '$state',
+    function($scope, userFactory, $rootScope, bodyService, $state) {
         
         $scope.currentPage = 'template/dashboard.html';
         $scope.isDebug = false;
@@ -13,6 +14,10 @@ evosoft.controller('bodyController', [
         $scope.values = [
             {text: 'Hello', value: "world"}
         ];
+        
+        $scope.goState = function(stateName) {
+            $state.transitionTo(stateName);
+        };
         
         // User inputs.
         $scope.userFields = [

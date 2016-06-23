@@ -7,13 +7,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" data-ng-bind="projectName"></a>
+            <a class="navbar-brand" href="/" data-ng-bind="projectName"></a>
         </div>
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active" data-ng-repeat="point in menuPoints">
-                    <a href="#" data-ng-href="{{point.href}}" data-ng-click="changePage($event, point)">
+                <li ui-sref-active="active" data-ng-repeat="point in menuPoints">
+                    <a 
+                       ui-sref="{{point.state}}" 
+                       ui-sref-active="active">
                         {{ point.text }}
                     </a>
                 </li>

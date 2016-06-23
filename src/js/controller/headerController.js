@@ -16,17 +16,17 @@ evosoft.controller('headerController', [
         // Menu points of header.
         $scope.menuPoints = [
             {
-                href: '#',
+                state: 'dashboard',
                 text: 'Dashboard',
                 template: 'dashboard'
             },
             {
-                href: '#user',
+                state: 'user',
                 text: 'User',
                 template: 'user'
             },
             {
-                href: '#admin',
+                state: 'admin',
                 text: 'Admin',
                 template: 'admin'
             }            
